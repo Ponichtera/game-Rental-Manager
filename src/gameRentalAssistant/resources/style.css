@@ -1,0 +1,22 @@
+{
+    -primary-color: #00bcd4;
+    -secondary-color: #aaaaaa;
+}
+
+/*
+    The tab bar
+*/
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: -primary-color;
+}
+
+/*
+    The buttons
+*/
+
+.jfx-button {
+    -fx-background-color: -primary-color;
+    -fx-text-fill: white;
+}
+

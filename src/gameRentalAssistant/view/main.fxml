@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameRentalAssistant.controller.MainController">
+   <center>
+      <AnchorPane BorderPane.alignment="CENTER">
+         <children>
+            <JFXTabPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <tabs>
+                  <Tab text="Actions">
+                    <content>
+                      <AnchorPane>
+                           <children>
+                              <VBox layoutX="198.0" layoutY="34.0" spacing="6.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="6.0">
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <HBox alignment="CENTER" layoutX="32.0" layoutY="32.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <children>
+                                                <VBox alignment="BOTTOM_CENTER" spacing="10.0">
+                                                   <children>
+                                                      <JFXTextField fx:id="enterUserIDField" alignment="CENTER" focusColor="#00bcd4" labelFloat="true" onAction="#loadUserInfo" promptText="Enter user ID" />
+                                                      <Label fx:id="userIdLabel" alignment="CENTER" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="BOTTOM_CENTER" spacing="10.0">
+                                                   <children>
+                                                      <JFXTextField fx:id="enterGameIDField" alignment="BOTTOM_CENTER" focusColor="#00bcd4" labelFloat="true" onAction="#loadGameInfo" promptText="Enter game ID" />
+                                                      <Label fx:id="gameIdLabel" alignment="CENTER" />
+                                                   </children>
+                                                </VBox>
+                                                <VBox alignment="CENTER" fillWidth="false" prefHeight="66.0" prefWidth="90.0" spacing="5.0">
+                                                   <children>
+                                                      <JFXButton fx:id="borrowButton" disable="true" onAction="#borrowGame" prefWidth="100.0" style="-fx-background-color: #00BCD4;" text="borrow" textFill="WHITE">
+                                                         <graphic>
+                                                            <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                               <image>
+                                                                  <Image url="@../resources/icons/issue.png" />
+                                                               </image>
+                                                            </ImageView>
+                                                         </graphic>
+                                                      </JFXButton>
+                                                   </children>
+                                                </VBox>
+                                                <JFXButton fx:id="payFineButton" disable="true" onAction="#payFine" prefWidth="100.0" style="-fx-background-color: #00BCD4;" text="Pay fine" textFill="WHITE">
+                                                   <graphic>
+                                                      <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../resources/icons/pay.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                             <padding>
+                                                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <VBox alignment="TOP_RIGHT">
+                                       <children>
+                                          <AnchorPane>
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="28.0" prefWidth="175.0" text="borrowed games" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="0.0">
+                                                   <font>
+                                                      <Font size="19.0" />
+                                                   </font>
+                                                </Label>
+                                                <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#clearUser" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                                                   <image>
+                                                      <Image url="@../resources/icons/Dice_64px.png" />
+                                                   </image>
+                                                </ImageView>
+                                             </children>
+                                          </AnchorPane>
+                                          <Separator prefHeight="5.0" prefWidth="460.0" />
+                                          <TableView fx:id="borrowedGamesTable" onMouseClicked="#refreshTableButtons">
+                                             <columns>
+                                                <TableColumn fx:id="gameIdIssueColumn" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" text="ID" />
+                                                <TableColumn fx:id="nameIssueColumn" minWidth="200.0" prefWidth="200.0" text="Name" />
+                                                <TableColumn fx:id="languageIssueColumn" minWidth="100.0" prefWidth="100.0" text="Author" />
+                                                <TableColumn fx:id="dateIssueColumn" minWidth="120.0" prefWidth="120.0" text="Issue date" />
+                                                <TableColumn fx:id="renewCountIssueColumn" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" text="Renewed" />
+                                                <TableColumn fx:id="fineIssueColumn" minWidth="40.0" prefWidth="40.0" text="Fine" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <Separator prefHeight="5.0" prefWidth="460.0" />
+                                          <HBox alignment="TOP_RIGHT" spacing="5.0">
+                                             <children>
+                                                <JFXButton fx:id="renewButton" disable="true" onAction="#renewGame" prefWidth="100.0" style="-fx-background-color: #00BCD4;" text="renew" textFill="WHITE">
+                                                   <graphic>
+                                                      <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../resources/icons/renew.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                                <JFXButton fx:id="returnButton" disable="true" layoutX="717.0" layoutY="10.0" onAction="#returnGame" prefWidth="100.0" style="-fx-background-color: #00BCD4;" text="return" textFill="WHITE">
+                                                   <graphic>
+                                                      <ImageView fitHeight="30.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                                         <image>
+                                                            <Image url="@../resources/icons/return.png" />
+                                                         </image>
+                                                      </ImageView>
+                                                   </graphic>
+                                                </JFXButton>
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+                  <Tab text="Resources">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <VBox layoutY="-14.0" prefHeight="595.0" prefWidth="538.0" spacing="16.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                 <children>
+                                    <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="235.0" prefWidth="427.0">
+                                       <children>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" onMouseClicked="#clearUser" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-3.0">
+                                             <image>
+                                                <Image url="@../resources/icons/users.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="28.0" prefWidth="87.0" text="members" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="-6.0">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <Separator prefHeight="5.0" prefWidth="460.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0" />
+                                          <TableView fx:id="allUsersTableView" layoutX="209.0" layoutY="18.0" onMouseClicked="#memberSelect" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="36.0">
+                                             <columns>
+                                                <TableColumn fx:id="allMembersColumnID" maxWidth="100.0" minWidth="30.0" prefWidth="30.0" text="ID" />
+                                                <TableColumn fx:id="allMembersColumnName" minWidth="100.0" prefWidth="100.0" text="Name" />
+                                                <TableColumn fx:id="allMembersColumnAddress" minWidth="180.0" prefWidth="180.0" text="Address" />
+                                                <TableColumn fx:id="allMembersColumnEmail" minWidth="140.0" prefWidth="175.0" text="Email" />
+                                                <TableColumn fx:id="allMembersColumnPhone" minWidth="80.0" prefWidth="111.0" text="Phone" />
+                                                <TableColumn fx:id="allMembersColumnGames" minWidth="25.0" prefWidth="38.0" text="Games" />
+                                                <TableColumn fx:id="allMembersColumnFine" minWidth="21.0" prefWidth="29.0" text="Fine" />
+                                             </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="60.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="0.0">
+                                             <image>
+                                                <Image url="@../resources/icons/minusGray.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="removeUserButton" fitHeight="20.0" fitWidth="20.0" layoutX="556.0" layoutY="2.0" onMouseClicked="#deleteUser" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="0.0">
+                                             <image>
+                                                <Image url="@../resources/icons/minus.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="7.0" onMouseClicked="#addUser" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="0.0">
+                                             <image>
+                                                <Image url="@../resources/icons/plus.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="50.0" layoutY="7.0" onMouseClicked="#loadUsersTable" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="0.0">
+                                             <image>
+                                                <Image url="@../resources/icons/refresh.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane prefHeight="235.0" prefWidth="427.0">
+                                       <children>
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#clearUser" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="-5.0">
+                                             <image>
+                                                <Image url="@../resources/icons/Dice_64px.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label alignment="TOP_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="125.0" text="games" AnchorPane.rightAnchor="45.0" AnchorPane.topAnchor="-6.0">
+                                             <font>
+                                                <Font size="19.0" />
+                                             </font>
+                                          </Label>
+                                          <Separator prefHeight="5.0" prefWidth="460.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="25.0" />
+                                          <TableView fx:id="allGamesTableView" layoutX="436.0" layoutY="36.0" onMouseClicked="#gameSelect" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="36.0">
+                                            <columns>
+                                              <TableColumn fx:id="allGamesColumnID" maxWidth="100.0" minWidth="30.0" prefWidth="30.0" text="ID" />
+                                              <TableColumn fx:id="allGamesColumnName" minWidth="200.0" prefWidth="200.0" text="Name" />
+                                                <TableColumn fx:id="allGamesColumnLanguage" minWidth="100.0" prefWidth="100.0" text="Language" />
+                                                <TableColumn fx:id="allGamesColumnEAN" minWidth="100.0" prefWidth="100.0" text="EAN" />
+                                                <TableColumn fx:id="allGamesColumnPublisher" minWidth="80.0" text="Publisher" />
+                                                <TableColumn fx:id="allGamesColumnStatus" minWidth="25.0" prefWidth="25.0" text="Available" />
+                                            </columns>
+                                             <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                             </columnResizePolicy>
+                                          </TableView>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="-3.0">
+                                             <image>
+                                                <Image url="@../resources/icons/minusGray.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="removeGameButton" fitHeight="20.0" fitWidth="20.0" layoutX="25.0" layoutY="10.0" onMouseClicked="#deleteGame" pickOnBounds="true" preserveRatio="true" visible="false" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="-3.0">
+                                             <image>
+                                                <Image url="@../resources/icons/minus.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="95.0" layoutY="10.0" onMouseClicked="#addGame" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="-3.0">
+                                             <image>
+                                                <Image url="@../resources/icons/plus.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="7.0" onMouseClicked="#loadGameTable" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="-3.0">
+                                             <image>
+                                                <Image url="@../resources/icons/refresh.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+            <ImageView fx:id="settingsButton" fitHeight="30.0" fitWidth="25.0" onMouseClicked="#loadSettingsWindow" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+               <image>
+                  <Image url="@../resources/icons/settings.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </center>
+   <right>
+      <AnchorPane maxWidth="260.0" minWidth="260.0" prefHeight="600.0" prefWidth="260.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="5.0" layoutY="14.0" maxHeight="300.0" minHeight="300.0" prefHeight="300.0" prefWidth="252.0" spacing="9.0" styleClass="card" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <children>
+                  <AnchorPane prefHeight="30.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="70.0" text="User ID" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="5.0" />
+                        <Label fx:id="txtUserId" layoutX="69.0" prefHeight="25.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" />
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="128.0" onMouseClicked="#clearUser" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/icons/clear.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <Separator prefWidth="200.0" />
+                  <GridPane hgap="2.0" prefHeight="157.0" prefWidth="370.0" vgap="7.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="102.0" minWidth="10.0" prefWidth="47.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="171.0" minWidth="10.0" prefWidth="171.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Address" GridPane.rowIndex="1" />
+                        <Label text="Name" />
+                        <Label text="Phone" GridPane.rowIndex="2" />
+                        <Label text="Email" GridPane.rowIndex="3" />
+                        <Label text="Fine" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtUserName" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="John Doe" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtUserAddress" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="21 Dream Street" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtUserPhone" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="+25 252 51 555" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtUserEmail" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="user@system.com" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtUserFine" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Separator prefWidth="200.0" />
+                  <AnchorPane prefHeight="15.0" prefWidth="240.0">
+                     <children>
+                        <JFXToggleButton fx:id="userToggleButton" disable="true" minHeight="30.0" onAction="#toggleEditUserPanel" prefHeight="30.0" prefWidth="79.0" text=" " toggleColor="#00bcd4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton fx:id="userProfileLeftButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" minHeight="30.0" onAction="#saveEditedUser" prefWidth="40.0" style="-fx-background-color: #00BCD4;" text=" " textAlignment="CENTER" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                           <graphic>
+                              <ImageView fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="userProfileRightButton" contentDisplay="GRAPHIC_ONLY" minHeight="30.0" onAction="#cancelUser" prefWidth="40.0" style="-fx-background-color: #00BCD4;" text=" " textAlignment="CENTER" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/back.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <ImageView fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2.0">
+                           <image>
+                              <Image url="@../resources/icons/edit.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+            <VBox layoutX="15.0" layoutY="15.0" maxHeight="300.0" minHeight="300.0" prefHeight="300.0" prefWidth="252.0" spacing="9.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="320.0">
+               <children>
+                  <AnchorPane prefHeight="30.0">
+                     <children>
+                        <Label prefHeight="25.0" prefWidth="70.0" text="Game ID" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" />
+                        <Label fx:id="txtGameId" layoutX="121.0" prefHeight="25.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="75.0" />
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="183.0" layoutY="-9.0" onMouseClicked="#clearGame" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <image>
+                              <Image url="@../resources/icons/clear.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+                  <Separator prefWidth="200.0" />
+                  <GridPane hgap="2.0" prefHeight="157.0" prefWidth="370.0" vgap="7.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="65.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="154.0" minWidth="10.0" prefWidth="153.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Language" GridPane.rowIndex="1" />
+                        <Label text="Name" />
+                        <Label text="EAN" GridPane.rowIndex="2" />
+                        <Label text="Publisher" GridPane.rowIndex="3" />
+                        <Label text="Status" GridPane.rowIndex="4" />
+                        <TextField fx:id="txtGameName" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="Monopoly" GridPane.columnIndex="1" />
+                        <TextField fx:id="txtGameLanguage" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="English" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="txtGameEAN" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="5010994561451" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="txtGamePublisher" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="Hasbro" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="txtGameStatus" editable="false" opacity="0.95" style="-fx-text-fill: #AAAAAA;" text="Available" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+                  <Separator prefWidth="200.0" />
+                  <AnchorPane prefHeight="15.0" prefWidth="240.0">
+                     <children>
+                        <JFXToggleButton fx:id="gameToggleButton" disable="true" minHeight="30.0" onAction="#toggleEditGamePanel" prefHeight="30.0" prefWidth="79.0" text=" " toggleColor="#00bcd4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="0.0" />
+                        <JFXButton fx:id="gameInfoLeftButton" contentDisplay="GRAPHIC_ONLY" graphicTextGap="0.0" minHeight="30.0" onAction="#saveEditedGame" prefWidth="40.0" style="-fx-background-color: #00BCD4;" text=" " textAlignment="CENTER" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                           <graphic>
+                              <ImageView fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="gameInfoRightButton" contentDisplay="GRAPHIC_ONLY" minHeight="30.0" onAction="#cancelGame" prefWidth="40.0" style="-fx-background-color: #00BCD4;" text=" " textAlignment="CENTER" textFill="WHITE" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <graphic>
+                              <ImageView pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/icons/back.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <ImageView fitWidth="25.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="2.0">
+                           <image>
+                              <Image url="@../resources/icons/edit.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </right>
+</BorderPane>

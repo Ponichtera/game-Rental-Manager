@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="rootPane" prefHeight="475.0" prefWidth="300.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gameRentalAssistant.controller.LoginController">
+   <children>
+      <ImageView fitHeight="232.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../resources/background.jpeg" />
+         </image>
+      </ImageView>
+      <Pane layoutX="14.0" layoutY="-72.0" opacity="0.56" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: #2B95CF;" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+      <Pane layoutY="200.0" prefHeight="30.0" prefWidth="300.0" style="-fx-background-color: #046E9E;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+         <children>
+            <Label alignment="TOP_CENTER" layoutX="28.0" layoutY="-2.0" prefHeight="35.0" prefWidth="282.0" text="Board Games rental manager" textFill="WHITE">
+               <font>
+                  <Font name="Dubai Light" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView onMouseClicked="#handleClose" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@../resources/icons/delete.png" />
+         </image>
+      </ImageView>
+      <HBox alignment="CENTER" layoutX="42.0" layoutY="289.0" prefHeight="48.0" prefWidth="257.0" spacing="10.0" AnchorPane.bottomAnchor="150.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
+         <children>
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons/User_50px.png" />
+               </image>
+            </ImageView>
+            <JFXTextField fx:id="username" alignment="CENTER_RIGHT" focusColor="#2b95cf" labelFloat="true" prefHeight="25.0" prefWidth="216.0" promptText="username" style="-fx-text-inner-color: #046E9E; -fx-prompt-text-fill: #046E9E; " unFocusColor="#046e9e">
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </JFXTextField>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="42.0" layoutY="328.0" spacing="10.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="42.0" AnchorPane.rightAnchor="42.0">
+         <children>
+            <ImageView pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../resources/icons/Key_48px.png" />
+               </image>
+            </ImageView>
+            <JFXPasswordField fx:id="password" alignment="CENTER_RIGHT" focusColor="#2b95cf" labelFloat="true" onAction="#login" prefHeight="25.0" prefWidth="216.0" promptText="password" style="-fx-text-inner-color: #046E9E; -fx-prompt-text-fill: #046E9E;" unFocusColor="#046e9e">
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </JFXPasswordField>
+         </children>
+      </HBox>
+      <JFXButton fx:id="loginButton" layoutX="95.0" layoutY="402.0" onAction="#login" prefHeight="31.0" prefWidth="152.0" style="-fx-background-color: #046E9E; -fx-background-radius: 15;" text="Login" textFill="WHITE" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="95.0" AnchorPane.rightAnchor="94.0">
+         <font>
+            <Font size="15.0" />
+         </font></JFXButton>
+      <ImageView fx:id="redKey" layoutX="42.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../resources/icons/Key_48px_red.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="redUser" layoutX="42.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../resources/icons/User_50px_red.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>
